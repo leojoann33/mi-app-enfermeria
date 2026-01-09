@@ -1,16 +1,72 @@
-# React + Vite
+# 🏥 PETRESCU-ENF2: Simulación de Enfermería Avanzada
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📋 Visión General
+PETRESCU-ENF2 es una **PWA (Progressive Web App)** educativa diseñada para estudiantes de enfermería hispano-rumanos. Su objetivo es cerrar la brecha entre la teoría clínica y la práctica real mediante simuladores de alta fidelidad, glosarios bilingües y casos clínicos interactivos.
 
-Currently, two official plugins are available:
+El proyecto sigue estrictamente la estética académica de **"Harrison's Principles of Internal Medicine"** (18ª Edición) y la metodología **NANDA-I / NIC / NOC**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🏗 Arquitectura del Proyecto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+El código está organizado modularmente para facilitar la escalabilidad y el mantenimiento:
 
-## Expanding the ESLint configuration
+### `/src/components` (Interfaz de Usuario)
+Componentes reutilizables de UI.
+- `MainHeader.jsx`: Cabecera principal con selector de "Universos" (MED/ENF/CS).
+- `CourseViewer.jsx`: Motor de renderizado del temario académico.
+- `VitalsEvaluator.jsx`: Simulador de constantes vitales.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### `/src/data` (Lógica y Bases de Datos)
+Toda la información clínica reside aquí, separada por dominios:
+- **`dictionary.js`**: Diccionario terminológico masivo (~17.000 términos).
+- **`meds.js`**: Base de datos de fármacos activos.
+- **`lab.js`**: Tubos de analítica y pruebas de laboratorio.
+- **`ehr_sim.js`**: Simulación de Historia Clínica Electrónica.
+
+### `/src/data/vocabulary/` (Glosario Modular)
+Vocabulario específico enriquecido con *Nursing Focus*, *Alertas de Seguridad* y *Etimología*.
+- `index.js`: Agregador central (Sorteado alfabéticamente).
+- `personal.js`: Roles profesionales (MIR, TCAE, Adjunto).
+- `procedures.js`: Técnicas (RCP, Sondaje, Vías).
+- `medication.js`: Familias farmacológicas.
+- `material.js`: Equipamiento e instrumental.
+- `symptoms.js`: Signología clínica.
+- `pathologies.js`: Enfermedades comunes.
+- `geriatrics.js`: Atención al mayor.
+- `mental_health.js`: Psiquiatría básica.
+- `spaces.js`: Arquitectura hospitalaria.
+
+---
+
+## 🚀 Tecnologías
+- **Core**: React + Vite
+- **Estilos**: TailwindCSS (Utility-first)
+- **Iconografía**: Lucide React
+- **Datos**: JSON/JS Objects (No-SQL approach)
+
+---
+
+## 🛠 Instalación y Despliegue
+
+```bash
+# 1. Instalar dependencias
+npm install
+
+# 2. Iniciar servidor de desarrollo
+npm run dev
+
+# 3. Construir para producción
+npm run build
+```
+
+---
+
+## ⚠️ Protocolo de Calidad (PRO-TERM-01)
+Todo contenido nuevo debe cumplir:
+1.  **Bilingüismo Riguroso**: Español y Rumano profesional.
+2.  **Evidencia Científica**: Basado en guías clínicas actuales.
+3.  **Seguridad del Paciente**: Alertas claras sobre riesgos (ej. "No reencapuchar agujas").
+
+---
+**© 2024-2025 Proyecto Petrescu-Enf2**

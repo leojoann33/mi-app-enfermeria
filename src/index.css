@@ -1,49 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --harrison-blue: #003366; /* Deep Medical Blue */
+  --harrison-table-header: #E8E8E8; /* Light Grey for Table Headers */
+  --harrison-alert-bg: #FFF9C4; /* Pale Yellow for "Clinical Pearls" */
+}
+
+.font-harrison-serif {
+  font-family: "Georgia", "Times New Roman", Times, serif;
+}
+
+.font-harrison-sans {
+  font-family: "Arial", "Helvetica", sans-serif; /* Harrison uses simple generic sans for headers often */
+}
+
+.font-rounded {
+  font-family: "Varela Round", "Inter", sans-serif;
+}
+
+/* FIX CRÍTICO: Asegurar altura real en móviles (evita el rebote de Safari) */
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #e5e7eb; /* Fondo gris para escritorio */
-  font-family: 'Open Sans', sans-serif; /* Fuente Cuerpo por defecto */
-  -webkit-tap-highlight-color: transparent;
+  background-color: #0f172a; /* Fondo oscuro exterior */
+  overflow: hidden; /* Evita scroll en el body principal */
 }
 
 #root {
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
-  min-height: 100vh;
+  align-items: center;
 }
 
-/* Contenedor tipo App Móvil */
-.app-container {
-  width: 100%;
-  max-width: 450px;
-  height: 100vh;
-  background-color: #ffffff;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: column;
+/* FIX CRÍTICO: Eliminar scrollbar feo pero permitir scroll */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 4px;
+}
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
 }
 
-/* Utilidades */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-.animate-slide-in {
-  animation: slideIn 0.3s ease-out forwards;
-}
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(20px); }
-  to { opacity: 1; transform: translateX(0); }
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }

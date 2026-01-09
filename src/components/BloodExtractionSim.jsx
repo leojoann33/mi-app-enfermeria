@@ -116,27 +116,27 @@ const TUBES_INFO = {
   blue: { 
     id: 'blue', color: "bg-sky-400/20", liquid: "bg-sky-500", cap:"bg-sky-500", 
     label: "Citrato", code: "Coagulación", fillLevel: "100%", additive: "Citrato Sódico", 
-    lab: "Hematología", utility: "INR, TP, TTPA", heightClass: "h-48", care: "⚠️ CRÍTICO: Llenar EXACTO."
+    lab: "Hematología", utility: "INR, TP, TTPA", heightClass: "h-32", care: "⚠️ CRÍTICO: Llenar EXACTO."
   },
   yellow: { 
     id: 'yellow', color: "bg-yellow-400/20", liquid: "bg-yellow-500", cap:"bg-yellow-400", 
     label: "Suero Gel", code: "Bioquímica", fillLevel: "90%", additive: "Activador+Gel", 
-    lab: "Bioquímica", utility: "Glucosa, Colesterol", heightClass: "h-64", care: "Invertir 5-6 veces."
+    lab: "Bioquímica", utility: "Glucosa, Colesterol", heightClass: "h-40", care: "Invertir 5-6 veces."
   },
   purple: { 
     id: 'purple', color: "bg-purple-600/20", liquid: "bg-purple-700", cap:"bg-purple-600", 
     label: "EDTA", code: "Hemograma", fillLevel: "100%", additive: "EDTA K2", 
-    lab: "Hematología", utility: "Hb, Leucocitos", heightClass: "h-48", care: "Invertir 8-10 veces."
+    lab: "Hematología", utility: "Hb, Leucocitos", heightClass: "h-32", care: "Invertir 8-10 veces."
   },
   green: { 
     id: 'green', color: "bg-emerald-500/20", liquid: "bg-emerald-600", cap:"bg-emerald-500", 
     label: "Heparina", code: "Urgencias", fillLevel: "95%", additive: "Heparina Litio", 
-    lab: "Urgencias", utility: "Troponina, Iones", heightClass: "h-48", care: "Invertir 8-10 veces."
+    lab: "Urgencias", utility: "Troponina, Iones", heightClass: "h-32", care: "Invertir 8-10 veces."
   },
   black: { 
     id: 'black', color: "bg-gray-800/20", liquid: "bg-black", cap:"bg-black", 
     label: "VSG", code: "VSG", fillLevel: "100%", additive: "Citrato 1:4", 
-    lab: "Hematología", utility: "Velocidad Sedim.", heightClass: "h-48", care: "Llenado crítico."
+    lab: "Hematología", utility: "Velocidad Sedim.", heightClass: "h-32", care: "Llenado crítico."
   }
 };
 
@@ -312,8 +312,8 @@ export const BloodExtractionSim = ({ lang }) => {
                 </div>
             )}
             
-            <button onClick={() => setStep(2)} className="mt-4 w-full bg-brand-primary text-white py-4 rounded-xl font-heading font-bold text-lg shadow-lg hover:bg-brand-deep transition-all active:scale-[0.98] flex justify-center items-center gap-2">
-               {isEs ? "ANALIZAR SOLICITUD" : "ANALIZEAZĂ CEREREA"} <ArrowRight size={20}/>
+            <button onClick={() => setStep(3)} className="mt-4 w-full bg-brand-primary text-white py-4 rounded-xl font-heading font-bold text-lg shadow-lg hover:bg-brand-deep transition-all active:scale-[0.98] flex justify-center items-center gap-2">
+               {isEs ? "Confirmar Extracción" : "Confirmați Extracția"} <ArrowRight size={20}/>
             </button>
           </div>
         );
@@ -440,7 +440,7 @@ export const BloodExtractionSim = ({ lang }) => {
             <div className="animate-in slide-in-from-right pb-24 font-body">
                  <div className="bg-amber-50 p-4 mb-6 rounded-xl border-l-4 border-amber-500">
                   <h3 className="font-heading font-bold text-amber-900 text-lg flex items-center gap-2">
-                      <span className="bg-amber-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-black">3</span> 
+                      <span className="bg-[#E9B82B] text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-black">3</span> 
                       {isEs ? "El Carrito de Extracciones" : "Căruciorul de Recoltare"}
                   </h3>
                   <p className="text-sm text-amber-800 mt-1 ml-10">
@@ -460,7 +460,7 @@ export const BloodExtractionSim = ({ lang }) => {
                                if (selectedTubes.includes(tube)) setSelectedTubes(selectedTubes.filter(x => x !== tube));
                                else setSelectedTubes([...selectedTubes, tube]);
                            }}
-                           className={`w-20 ${TUBES_INFO[tube].heightClass} relative transition-all duration-300 flex flex-col items-center group
+                           className={`w-14 ${TUBES_INFO[tube].heightClass} relative transition-all duration-300 flex flex-col items-center group
                            ${shouldBlink ? 'animate-pulse ring-4 ring-amber-400 rounded-b-3xl' : ''}
                            ${selectedTubes.includes(tube) ? '-translate-y-6 scale-110 drop-shadow-2xl z-10' : 'opacity-70 hover:opacity-100 hover:-translate-y-2'}`}
                          >
@@ -512,7 +512,7 @@ export const BloodExtractionSim = ({ lang }) => {
                 
                 <div className="flex gap-4 items-end h-80">
                     {selectedTubes.map((tube, i) => (
-                        <div key={tube} className={`relative w-20 ${TUBES_INFO[tube].heightClass} bg-slate-50 border border-slate-300 rounded-b-3xl overflow-hidden shadow-2xl`}>
+                        <div key={tube} className={`relative w-14 ${TUBES_INFO[tube].heightClass} bg-slate-50 border border-slate-300 rounded-b-2xl overflow-hidden shadow-2xl`}>
                             <div className={`h-10 w-full ${TUBES_INFO[tube].cap} absolute top-0 z-20 shadow-md`}></div>
                             <div className="absolute top-12 left-1 right-1 h-24 bg-white border border-slate-200 z-10 flex flex-col items-center justify-center text-[8px] text-center opacity-90 shadow-sm px-1">
                                 <strong className="block text-[9px] truncate w-full mb-1">{currentCase.patient.fullName}</strong>
@@ -603,8 +603,8 @@ export const BloodExtractionSim = ({ lang }) => {
                                      </button>
                                  ))}
                              </div>
-                             <div className={`w-16 ${TUBES_INFO[tube].heightClass} ${TUBES_INFO[tube].color} border border-slate-300 rounded-b-2xl relative shadow-md overflow-hidden`}>
-                                 <div className={`h-8 w-full ${TUBES_INFO[tube].cap} absolute top-0`}></div>
+                             <div className={`w-12 ${TUBES_INFO[tube].id === 'yellow' ? 'h-32' : 'h-24'} ${TUBES_INFO[tube].color} border border-slate-300 rounded-b-2xl relative shadow-md overflow-hidden`}>
+                                 <div className={`h-6 w-full ${TUBES_INFO[tube].cap} absolute top-0`}></div>
                                  <div className="absolute bottom-0 w-full h-[60%] bg-red-800 opacity-80"></div>
                                  <div className="absolute bottom-4 w-full text-center text-[10px] font-black uppercase text-slate-500 transform -rotate-90">
                                      {TUBES_INFO[tube].label}
